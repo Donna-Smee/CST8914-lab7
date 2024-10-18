@@ -6,18 +6,23 @@
         <!-- Added styling so I can use WET 4 class, class="wb-inv" -->
         <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_1_0/wet-boew/css/theme.min.css">
 
-        <style>.control, fieldset {
+        <style>
+        
+        .control, fieldset {
       margin: 6px 0;
     }
 
+  
     body {
       margin: 2em;  
     }
     
     label {
       display: inline-block;
-      width: 120px;
+      /*Changed width from static px to max-content so that labels are fully visible*/
+      width: max-content;
       vertical-align: top;
+      margin-right: 1em;
     }
     
     input + label {
@@ -35,6 +40,7 @@
     /* Added styling to make the text area and description appear vertical so it is easier to read (when zoomed in) */
     #biography {
       display: block;
+
     }
 
     .horizontal-style {
@@ -42,7 +48,14 @@
       flex-direction: row;
       margin: 1em 0;
     }
+
+    #biblio-descript {
+      display: block;
+      background-color: aliceblue;
+    }
     
+
+
     </style>
     </head>
     <body>
@@ -51,17 +64,19 @@
         <div class="control">
           <!-- Added the for attribute to connect the name label with the name input -->
            <!-- Added required attribute and aria-required for browsers that don't communicate the required attribute -->
-          <label for="name">Full name <span class="required">* (required)</span></label><input id="name" name="name" type="text" required="required" aria-required="true"/>
+           <span class="required">* </span><label for="name">Full name <span class="required">(required)</span></label><input id="name" name="name" type="text" required="required" aria-required="true"/>
         </div>
         <div class="control">
           <!--  Added the for attribute to connect the Bibliography label with the input
                 Added aria-describedby to connect the description to the input  
-                Also added divs to style/position the elements in an easier to view way -->
+                Also added divs to style/position the elements in an easier to view way 
+                Question 3: added the text "required" so users can see that it is required (visibly) -->
           <div class="horizontal-style">
-            <label for="biography">Biography</label>
+            <label for="biography"><span class="required">* </span>Biography<span class="required"> (required)</span></label>
             <div>
               <span id="biblio-descript">Include examples on your skills in JavaScript.</span>
-              <textarea id="biography" name="biography" type="text" aria-describedby="biblio-descript"></textarea>
+              <!-- Question 3: Added required to ensure form is filled -->
+              <textarea id="biography" name="biography" type="text" aria-describedby="biblio-descript" required="required" aria-required="true"></textarea>
             </div>
             
           </div>
@@ -71,23 +86,24 @@
         </div>
         
           <!-- Grouped radio buttons together in a fieldset (for gender) -->
-          <fieldset>
+           <!-- qUESTION 3: Added required to the label for visibility, added required and aria-required attributes to fieldset and radio buttons to ensure users fill in the form completely -->
+          <fieldset aria-required="true">
             <!-- Gender is the label of the group (fieldset) -->
-            <legend>Gender</legend>
+            <legend><span class="required">*</span> Gender <span class="required">(required)</span></legend>
           <div class="control">
             <!-- Added the for attribute in the label, to connect it to the radio button for MALE-->
-            <input id="gender_male" name="gender" type="radio" value="male" /><label for="gender_male">Male</label>
+            <input id="gender_male" name="gender" type="radio" value="male" required="required"/><label for="gender_male">Male</label>
           </div>
           <div class="control">
             <!-- Added the for attribute in the label, to connect it to the radio button for FEMALE-->
-            <input id="gender_female" name="gender" type="radio" value="female" /><label for="gender_female">Female</label>
+            <input id="gender_female" name="gender" type="radio" value="female" required="required"/><label for="gender_female">Female</label>
           </div>
           </fieldset>
           
         
         <div class="control">
           <!-- Added the for attribute in the label, to connect it to the input for accepting the terms and conditions-->
-          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" /><label for="accept_agbs">I accept the terms and conditions</label>
+          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" required="required" aria-required="true"/><label for="accept_agbs">I accept the terms and conditions</label>
         </div>
         <div class="control">
           <!-- Added an invisible label for screen readers to be more descriptive on what the register button is for -->
